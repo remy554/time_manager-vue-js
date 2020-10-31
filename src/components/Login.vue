@@ -3,7 +3,8 @@
     <h1> Login </h1>
 
     <div class="card card-container">
-      <form name="form" @submit.prevent="handleLogin">
+      <ValidationObserver v-slot="{ invalid }">
+      <form @submit.prevent="handleLogin">
         <div class="form-group">
           <label for="username">Username</label>
 
@@ -47,7 +48,7 @@
         </div>
 
         <div class="form-group">
-          <button class="btn btn-primary btn-block" :disabled="loading">
+          <button class="btn btn-primary btn-block" :disabled="invalid">
             <span v-show="loading" class="spinner-border spinner-border-sm"></span>
             <span>Login</span>
           </button>
@@ -56,18 +57,13 @@
           <div v-if="message" class="alert alert-danger" role="alert">{{message}}</div>
         </div>
       </form>
+    </ValidationObserver>
     </div>
   </div>
 </template>
 
 <script>
 import User from '../models/user'
-import { extend } from 'vee-validate'
-import * as rules from 'vee-validate/dist/rules'
-
-Object.keys(rules).forEach(rule => {
-  extend(rule, rules[rule])
-})
 
 export default {
 
@@ -91,28 +87,25 @@ export default {
   },
   methods: {
     handleLogin () {
-      this.loading = true
-      this.$validator.validateAll().then(isValid => {
-        if (!isValid) {
-          this.loading = false
-          return
-        }
-
-        if (this.user.username && this.user.password) {
-          this.$store.dispatch('auth/signin', this.user).then(
-            () => {
-              this.$router.push('/profile')
-            },
-            error => {
-              this.loading = false
-              this.message =
+      // this.loading = true
+      // if (!isValid) {
+      //   this.loading = false
+      //   return
+      // }
+      if (this.user.username && this.user.password) {
+        this.$store.dispatch('auth/signin', this.user).then(
+          () => {
+            this.$router.push('/profile')
+          },
+          error => {
+            this.loading = false
+            this.message =
                 (error.response && error.response.data && error.response.data.message) ||
                 error.message ||
                 error.toString()
-            }
-          )
-        }
-      })
+          }
+        )
+      }
     }
   }
 }
