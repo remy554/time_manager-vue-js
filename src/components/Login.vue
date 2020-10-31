@@ -62,8 +62,15 @@
 
 <script>
 import User from '../models/user'
+import { extend } from 'vee-validate'
+import * as rules from 'vee-validate/dist/rules'
+
+Object.keys(rules).forEach(rule => {
+  extend(rule, rules[rule])
+})
 
 export default {
+
   name: 'Login',
   data () {
     return {
@@ -92,7 +99,7 @@ export default {
         }
 
         if (this.user.username && this.user.password) {
-          this.$store.dispatch('auth/login', this.user).then(
+          this.$store.dispatch('auth/signin', this.user).then(
             () => {
               this.$router.push('/profile')
             },

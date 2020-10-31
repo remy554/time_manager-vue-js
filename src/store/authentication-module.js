@@ -8,7 +8,6 @@ const initialState = user
   : { status: { signedOut: false }, user: null }
 
 export const auth = {
-  namespaced: true,
   state: initialState,
   actions: {
     signin ({ commit }, user) {
