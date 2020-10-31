@@ -3,8 +3,8 @@
     <h1> Login </h1>
 
     <div class="card card-container">
-      <ValidationObserver v-slot="{ invalid }">
-      <form @submit.prevent="handleLogin">
+      <ValidationObserver v-slot="{ handleSubmit }">
+      <form @submit.prevent="handleSubmit(login)">
         <div class="form-group">
           <label for="username">Username</label>
 
@@ -48,7 +48,7 @@
         </div>
 
         <div class="form-group">
-          <button class="btn btn-primary btn-block" :disabled="invalid">
+          <button class="btn btn-primary btn-block" :disabled="loading">
             <span v-show="loading" class="spinner-border spinner-border-sm"></span>
             <span>Login</span>
           </button>
@@ -86,14 +86,14 @@ export default {
     }
   },
   methods: {
-    handleLogin () {
+    login () {
       // this.loading = true
       // if (!isValid) {
       //   this.loading = false
       //   return
       // }
       if (this.user.username && this.user.password) {
-        this.$store.dispatch('auth/signin', this.user).then(
+        this.$store.dispatch('signin', this.user).then(
           () => {
             this.$router.push('/profile')
           },
