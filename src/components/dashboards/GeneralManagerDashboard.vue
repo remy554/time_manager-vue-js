@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <h1> Time Manager Home </h1>
     <header class="jumbotron">
       <h3>{{content}}</h3>
     </header>
@@ -8,17 +7,17 @@
 </template>
 
 <script>
-import UserService from '../services/user-service'
+import UserService from '../../services/user-service'
 
 export default {
-  name: 'Home',
+  name: 'GeneralManager',
   data () {
     return {
       content: ''
     }
   },
   mounted () {
-    UserService.getPublicContent().then(
+    UserService.getGeneralManagerDashboard().then(
       response => {
         this.content = response.data
       },
