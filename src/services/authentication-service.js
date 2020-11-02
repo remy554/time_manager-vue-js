@@ -15,6 +15,7 @@ class AuthenticationService {
       .then(response => {
         if (response.data.accessToken) {
           localStorage.setItem('user', JSON.stringify(response.data))
+          this.$cookie.set('userToken', response.data.accessToken)
         }
         return response.data
       })
@@ -25,6 +26,7 @@ class AuthenticationService {
       .post(API_URL + 'sign_out', {})
       .then(response => {
         localStorage.removeItem('user')
+        this.$cookie.set('userToken', null)
         return response.data
       }, { headers: authHeader() })
   }
