@@ -13,7 +13,7 @@
               v-model="user.username"
               type="text"
               class="form-control"
-            />
+            /><br>
             <span>{{ errors[0] }}</span>
         </ValidationProvider>
 
@@ -30,7 +30,7 @@
               v-model="user.email"
               type="email"
               class="form-control"
-            />
+            /><br>
             <span>{{ errors[0] }}</span>
           </ValidationProvider>
 
@@ -42,12 +42,23 @@
           <div class="form-group">
             <label for="password">Password</label>
 
-          <ValidationProvider name="password" rules="required|min:6|max:40" v-slot="{ errors }">
+          <ValidationProvider name="password" rules="required|min:8|password:@passwordConfirm" v-slot="{ errors }">
             <input
               v-model="user.password"
               type="password"
               class="form-control"
-            />
+            /><br>
+            <span>{{ errors[0] }}</span>
+          </ValidationProvider>
+
+          <label for="password">Confirm your password</label>
+
+          <ValidationProvider name="passwordConfirm" rules="required" v-slot="{ errors }">
+            <input
+              v-model="confirmation"
+              type="password"
+              class="form-control"
+            /><br>
             <span>{{ errors[0] }}</span>
           </ValidationProvider>
 
@@ -77,6 +88,14 @@ import User from '../models/user'
 import { extend } from 'vee-validate'
 import * as rules from 'vee-validate/dist/rules'
 
+extend('password', {
+  params: ['target'],
+  validate (value, { target }) {
+    return value === target
+  },
+  message: 'Password confirmation does not match'
+})
+
 Object.keys(rules).forEach(rule => {
   extend(rule, rules[rule])
 })
@@ -86,6 +105,7 @@ export default {
   data () {
     return {
       user: new User('', '', ''),
+      confirmation: '',
       submitted: false,
       successful: false,
       message: ''
