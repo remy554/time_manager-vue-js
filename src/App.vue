@@ -10,6 +10,8 @@
     </div>
     <router-view/>
 
+    <VueMorris/>
+
     <nav class="navbar navbar-expand navbar-dark bg-dark">
       <!-- <a href class="navbar-brand" @click.prevent>TimeManager</a> -->
       <div class="navbar-nav mr-auto">
@@ -46,8 +48,12 @@
 </template>
 
 <script>
+import VueMorris from '../src/components/VueMorris'
 export default {
   name: 'App',
+  components: {
+    VueMorris
+  },
   computed: {
     currentUser () {
       return this.$store.state.auth.user
