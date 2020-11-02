@@ -17,10 +17,10 @@
             <span>{{ errors[0] }}</span>
         </ValidationProvider>
 
-            <div
+            <!-- <div
               v-if="submitted && errors.has('username')"
               class="alert-danger"
-            >{{errors.first('username')}}</div>
+            >{{errors.first('username')}}</div> -->
           </div>
           <div class="form-group">
             <label for="email">Email</label>
@@ -34,10 +34,10 @@
             <span>{{ errors[0] }}</span>
           </ValidationProvider>
 
-            <div
+            <!-- <div
               v-if="submitted && errors.has('email')"
               class="alert-danger"
-            >{{errors.first('email')}}</div>
+            >{{errors.first('email')}}</div> -->
           </div>
           <div class="form-group">
             <label for="password">Password</label>
@@ -62,10 +62,10 @@
             <span>{{ errors[0] }}</span>
           </ValidationProvider>
 
-            <div
+            <!-- <div
               v-if="submitted && errors.has('password')"
               class="alert-danger"
-            >{{errors.first('password')}}</div>
+            >{{errors.first('password')}}</div> -->
           </div>
           <div class="form-group">
             <button class="btn btn-primary btn-block">Sign Up</button>
@@ -87,6 +87,9 @@
 import User from '../models/user'
 import { extend } from 'vee-validate'
 import * as rules from 'vee-validate/dist/rules'
+
+const bcrypt = require('bcryptjs')
+const saltRounds = 10
 
 extend('password', {
   params: ['target'],
@@ -123,10 +126,29 @@ export default {
   },
   methods: {
     register () {
+      console.log('register()')
+
       this.message = ''
       this.submitted = true
+      var passwordToHash = this.user.password
 
-      this.$store.dispatch('/register', this.user).then(
+      // Hash user password
+      bcrypt.genSalt(saltRounds, function (err, salt) {
+        if (err) {
+          throw err
+        } else {
+          bcrypt.hash(passwordToHash, salt, function (err, hash) {
+            if (err) {
+              throw err
+            } else {
+              console.log(hash)
+              // this.user.password = passwordToHash
+            }
+          })
+        }
+      })
+
+      this.$store.dispatch('signup', this.user).then(
         data => {
           this.message = data.message
           this.successful = true
