@@ -2,7 +2,8 @@
   <div class="col-md-12">
     <h1> Create an account </h1>
     <div class="card card-container">
-      <form name="form" @submit.prevent="handleRegister">
+    <ValidationObserver v-slot="{ handleSubmit }">
+      <form @submit.prevent="handleSubmit(register)">
         <div v-if="!successful">
 
           <div class="form-group">
@@ -66,6 +67,7 @@
         class="alert"
         :class="successful ? 'alert-success' : 'alert-danger'"
       >{{message}}</div>
+      </ValidationObserver>
     </div>
   </div>
 </template>
@@ -100,26 +102,23 @@ export default {
     }
   },
   methods: {
-    handleRegister () {
+    register () {
       this.message = ''
       this.submitted = true
-      this.$validator.validate().then(isValid => {
-        if (isValid) {
-          this.$store.dispatch('auth/register', this.user).then(
-            data => {
-              this.message = data.message
-              this.successful = true
-            },
-            error => {
-              this.message =
+
+      this.$store.dispatch('/register', this.user).then(
+        data => {
+          this.message = data.message
+          this.successful = true
+        },
+        error => {
+          this.message =
                 (error.response && error.response.data && error.response.data.message) ||
                 error.message ||
                 error.toString()
-              this.successful = false
-            }
-          )
+          this.successful = false
         }
-      })
+      )
     }
   }
 }
