@@ -89,7 +89,7 @@ import { extend } from 'vee-validate'
 import * as rules from 'vee-validate/dist/rules'
 
 const bcrypt = require('bcryptjs')
-const saltRounds = 10
+const saltRounds = 10 // This is to prevent rainbow table attacks which can reverse hashed passwords using common hashing functions that do not utilize a salt
 
 extend('password', {
   params: ['target'],
@@ -126,41 +126,45 @@ export default {
   },
   methods: {
     register () {
-      console.log('register()')
-
+      // console.log('register()')
       this.message = ''
       this.submitted = true
-      var passwordToHash = this.user.password
+      // var passwordToHash = this.user.password
 
-      // Hash user password
-      bcrypt.genSalt(saltRounds, function (err, salt) {
-        if (err) {
-          throw err
-        } else {
-          bcrypt.hash(passwordToHash, salt, function (err, hash) {
-            if (err) {
-              throw err
-            } else {
-              console.log(hash)
-              // this.user.password = passwordToHash
-            }
-          })
-        }
-      })
+      // Hash user password synchronously
+      var hashedPassword = bcrypt.hashSync(this.user.password, saltRounds)
+      this.user.password = hashedPassword
+      console.log(this.user.password)
 
-      this.$store.dispatch('signup', this.user).then(
-        data => {
-          this.message = data.message
-          this.successful = true
-        },
-        error => {
-          this.message =
-                (error.response && error.response.data && error.response.data.message) ||
-                error.message ||
-                error.toString()
-          this.successful = false
-        }
-      )
+      // Hash user password asynchronously
+      // Not used here because we need to be in the scope where "this" is available
+      //
+      // bcrypt.genSalt(saltRounds, function (err, salt) {
+      //   if (err) {
+      //     throw err
+      //   } else {
+      //     bcrypt.hash(passwordToHash, salt, function (err, hash) {
+      //       if (err) {
+      //         throw err
+      //       } else {
+      //         console.log(hash)
+      //         this.$store.dispatch('signup', this.user).then(
+      //           data => {
+      //             this.message = data.message
+      //             this.successful = true
+      //           },
+      //           error => {
+      //             this.message =
+      //           (error.response && error.response.data && error.response.data.message) ||
+      //           error.message ||
+      //           error.toString()
+      //             this.successful = false
+      //           }
+      //         )
+      //       }
+      //     })
+      //   }
+      // })
     }
   }
 }
