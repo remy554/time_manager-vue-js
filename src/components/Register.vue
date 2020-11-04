@@ -87,9 +87,7 @@
 import User from '../models/user'
 import { extend } from 'vee-validate'
 import * as rules from 'vee-validate/dist/rules'
-
-const bcrypt = require('bcryptjs')
-const saltRounds = 10 // This is to prevent rainbow table attacks which can reverse hashed passwords using common hashing functions that do not utilize a salt
+import { bcrypt, saltRounds } from '../global-variables'
 
 extend('password', {
   params: ['target'],

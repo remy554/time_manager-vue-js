@@ -64,6 +64,7 @@
 
 <script>
 import User from '../models/user'
+import { bcrypt, saltRounds } from '../global-variables'
 
 export default {
 
@@ -87,12 +88,15 @@ export default {
   },
   methods: {
     login () {
+      this.user.id = 1
+      console.log(this.user.id)
       // this.loading = true
       // if (!isValid) {
       //   this.loading = false
       //   return
       // }
       if (this.user.username && this.user.password) {
+        this.user.password = bcrypt.hashSync(this.user.password, saltRounds)
         this.$store.dispatch('signin', this.user).then(
           () => {
             this.$router.push('/profile')
