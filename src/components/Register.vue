@@ -87,7 +87,7 @@
 import User from '../models/user'
 import { extend } from 'vee-validate'
 import * as rules from 'vee-validate/dist/rules'
-import { bcrypt, saltRounds } from '../global-variables'
+// import { bcrypt, saltRounds } from '../global-variables'
 
 extend('password', {
   params: ['target'],
@@ -130,8 +130,8 @@ export default {
       // var passwordToHash = this.user.password
 
       // Hash user password synchronously
-      var hashedPassword = bcrypt.hashSync(this.user.password, saltRounds)
-      this.user.password = hashedPassword
+      // var hashedPassword = bcrypt.hashSync(this.user.password, saltRounds)
+      // this.user.password = hashedPassword
       console.log(this.user.password)
 
       this.$store.dispatch('signup', this.user).then(
