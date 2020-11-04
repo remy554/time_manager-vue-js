@@ -3,11 +3,18 @@
     <header class="jumbotron">
       <h3>{{content}}</h3>
     </header>
+
+    <SelectUser />
+    <AddUser />
+    <UserList />
   </div>
 </template>
 
 <script>
 import UserService from '../../services/user-service'
+import AddUser from '../AddUser'
+import UserList from '../UserList'
+import SelectUser from '../SelectUser'
 
 export default {
   name: 'GeneralManager',
@@ -28,6 +35,11 @@ export default {
           error.toString()
       }
     )
+  },
+  components: {
+    SelectUser,
+    AddUser,
+    UserList
   }
 }
 </script>
