@@ -136,6 +136,20 @@ export default {
       this.user.password = hashedPassword
       console.log(this.user.password)
 
+      this.$store.dispatch('signup', this.user).then(
+        data => {
+          this.message = data.message
+          this.successful = true
+        },
+        error => {
+          this.message =
+                (error.response && error.response.data && error.response.data.message) ||
+                error.message ||
+                error.toString()
+          this.successful = false
+        }
+      )
+
       // Hash user password asynchronously
       // Not used here because we need to be in the scope where "this" is available
       //

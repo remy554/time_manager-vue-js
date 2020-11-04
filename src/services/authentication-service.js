@@ -32,12 +32,21 @@ class AuthenticationService {
   }
 
   signup (user) {
+    console.log('sign_up request started')
     return axios.post(API_URL + 'sign_up', {
       username: user.username,
       email: user.email,
       password: user.password,
       password_confirmation: user.password
     }, { headers: authHeader() })
+      .then(response => {
+        console.log('sign_up request response')
+        if (response.data.accessToken) {
+          localStorage.setItem('user', JSON.stringify(response.data))
+          this.$cookie.set('userToken', response.data.accessToken)
+        }
+        return response.data
+      })
   }
 }
 
