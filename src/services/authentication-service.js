@@ -17,8 +17,10 @@ class AuthenticationService {
       .post(API_URL + 'sign_in', jsonBody, { headers: authHeader() })
       .then(response => {
         if (response.data.jwt) {
-          localStorage.setItem('user', JSON.stringify(response.data))
-          // this.$cookies.set('userToken', response.data.jwt) //not the right scope
+          console.log(response.data.user)
+          localStorage.setItem('user', JSON.stringify(response.data.user))
+          console.log(response.data.jwt)
+          localStorage.setItem('jwt', JSON.stringify(response.data.jwt))
         }
         return response
       })
@@ -29,7 +31,7 @@ class AuthenticationService {
       .post(API_URL + 'sign_out', {})
       .then(response => {
         localStorage.removeItem('user')
-        // this.$cookies.set('userToken', null) //not the right scope
+        localStorage.removeItem('jwt')
         return response.data
       }, { headers: authHeader() })
   }
@@ -50,9 +52,10 @@ class AuthenticationService {
         console.log('sign_up request response')
         console.log(response)
         if (response.data.jwt) {
+          console.log(response.data.user)
+          localStorage.setItem('user', JSON.stringify(response.data.user))
           console.log(response.data.jwt)
-          localStorage.setItem('user', JSON.stringify(response.data))
-          // this.$cookies.set('userToken', response.data.jwt, 30)
+          localStorage.setItem('jwt', JSON.stringify(response.data.jwt))
         }
         return response
       })

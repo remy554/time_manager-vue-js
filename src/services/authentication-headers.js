@@ -1,10 +1,10 @@
 /* Authorization headers with the user token */
 
 export default function authHeader () {
-  const user = JSON.parse(localStorage.getItem('user'))
+  const jwt = JSON.parse(localStorage.getItem('jwt'))
 
-  if (user && user.accessToken) {
-    return { Authorization: 'Bearer ' + this.$cookie.get('userToken') }
+  if (jwt) {
+    return { Authorization: 'Bearer ' + jwt }
   } else {
     return {}
   }
