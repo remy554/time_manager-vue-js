@@ -139,6 +139,8 @@ export default {
       this.$store.dispatch('signup', this.user).then(
         data => {
           console.log('then dispatch register data')
+          this.$cookies.set('jwt', data.jwt, 30)
+          console.log('cookie jwt :' + this.$cookies.get('jwt'))
           this.message = data.message
           this.successful = true
         },

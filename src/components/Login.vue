@@ -98,6 +98,9 @@ export default {
       if (this.user.username && this.user.password) {
         // this.user.password = bcrypt.hashSync(this.user.password, saltRounds)
         this.$store.dispatch('signin', this.user).then(
+          data => {
+            this.$cookie.set('jwt', data.jwt, 30)
+          },
           () => {
             this.$router.push('/profile')
           },
