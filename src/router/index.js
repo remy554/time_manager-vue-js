@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import About from '../views/About.vue'
 import Login from '../components/Login.vue'
 import Register from '../components/Register.vue'
+import ClockManager from '../components/ClockManager.vue'
 
 Vue.use(VueRouter)
 
@@ -25,6 +26,10 @@ const routes = [
   {
     path: '/register',
     component: Register
+  },
+  {
+    path: '/clock',
+    component: ClockManager
   },
   {
     path: '/profile',
