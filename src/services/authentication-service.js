@@ -18,9 +18,9 @@ class AuthenticationService {
       .then(response => {
         if (response.data.jwt) {
           localStorage.setItem('user', JSON.stringify(response.data))
-          this.$cookies.set('userToken', response.data.jwt)
+          // this.$cookies.set('userToken', response.data.jwt) //not the right scope
         }
-        return response.data
+        return response
       })
   }
 
@@ -29,7 +29,7 @@ class AuthenticationService {
       .post(API_URL + 'sign_out', {})
       .then(response => {
         localStorage.removeItem('user')
-        this.$cookies.set('userToken', null)
+        // this.$cookies.set('userToken', null) //not the right scope
         return response.data
       }, { headers: authHeader() })
   }
@@ -52,10 +52,9 @@ class AuthenticationService {
         if (response.data.jwt) {
           console.log(response.data.jwt)
           localStorage.setItem('user', JSON.stringify(response.data))
-          this.$cookies.set('userToken', response.data.jwt, 30)
-          console.log('Token cookie : ' + this.$cookies.get('userToken'))
+          // this.$cookies.set('userToken', response.data.jwt, 30)
         }
-        return response.data
+        return response
       })
   }
 }
