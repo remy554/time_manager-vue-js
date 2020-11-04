@@ -7,15 +7,18 @@ const API_URL = 'http://localhost:4000/api/users/'
 
 class AuthenticationService {
   signin (user) {
-    return axios
-      .post(API_URL + 'sign_in', {
+    const jsonBody = {
+      user: {
         username: user.username,
         password: user.password
-      }, { headers: authHeader() })
+      }
+    }
+    return axios
+      .post(API_URL + 'sign_in', jsonBody, { headers: authHeader() })
       .then(response => {
-        if (response.data.accessToken) {
+        if (response.data.jwt) {
           localStorage.setItem('user', JSON.stringify(response.data))
-          this.$cookie.set('userToken', response.data.accessToken)
+          this.$cookie.set('userToken', response.data.jwt)
         }
         return response.data
       })
@@ -33,17 +36,24 @@ class AuthenticationService {
 
   signup (user) {
     console.log('sign_up request started')
-    return axios.post(API_URL + 'sign_up', {
-      username: user.username,
-      email: user.email,
-      password: user.password,
-      password_confirmation: user.password
-    }, { headers: authHeader() })
+
+    const jsonBody = {
+      user: {
+        username: user.username,
+        email: user.email,
+        password: user.password,
+        password_confirmation: user.password
+      }
+    }
+    return axios.post(API_URL + 'sign_up', jsonBody, { headers: authHeader() })
       .then(response => {
         console.log('sign_up request response')
-        if (response.data.accessToken) {
+        console.log(response)
+        if (response.data.jwt) {
+          console.log(response.data.jwt)
           localStorage.setItem('user', JSON.stringify(response.data))
-          this.$cookie.set('userToken', response.data.accessToken)
+          // this.$cookie.set('userToken', response.data.jwt)
+          // console.log('Token cookie : ' + this.$cookie.get('userToken'))
         }
         return response.data
       })

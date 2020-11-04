@@ -137,17 +137,19 @@ export default {
       console.log(this.user.password)
 
       this.$store.dispatch('signup', this.user).then(
-        data => {
-          this.message = data.message
-          this.successful = true
-        },
-        error => {
-          this.message =
-                (error.response && error.response.data && error.response.data.message) ||
-                error.message ||
-                error.toString()
-          this.successful = false
-        }
+        // Not working because request is async
+        // data => {
+        //   this.message = data.message
+        //   this.successful = true
+        // },
+        // error => {
+        //   console.log('error register')
+        //   this.message =
+        //         (error.response && error.response.data && error.response.data.message) ||
+        //         error.message ||
+        //         error.toString()
+        //   this.successful = false
+        // }
       )
 
       // Hash user password asynchronously
