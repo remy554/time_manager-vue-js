@@ -6,13 +6,10 @@ const API_URL = 'http://localhost:4000/api/clocks/'
 
 class ClockManagerService {
   clock () {
-    // const id = JSON.parse(localStorage.getItem('user')).id
-    const userId = { userID: JSON.parse(localStorage.getItem('user')).id }
-    // console.log('user id from storage : ' + id)
     return axios
-      .post(API_URL, { headers: authHeader() }, { params: userId })
+      .post(API_URL + JSON.parse(localStorage.getItem('user')).id, null, { headers: authHeader() })
       .then(response => {
-        return response.data
+        return response
       })
   }
 }

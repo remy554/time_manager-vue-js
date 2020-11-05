@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <header class="jumbotron">
-      <h2> Your Profile </h2>
+      <h2> Your Profile 2 </h2>
       <!-- <h3>
         <strong>{{currentUser.username}}</strong> Profile
       </h3> -->
@@ -22,7 +22,7 @@
     <ul>
       <li v-for="(role,index) in currentUser.roles" :key="index">{{role}}</li>
     </ul> -->
-
+    <UserDashboard/>
     <Logout/>
 
   </div>
@@ -30,6 +30,8 @@
 
 <script>
 import Logout from './Logout.vue'
+import UserDashboard from './dashboards/UserDashboard.vue'
+
 export default {
   name: 'Profile',
   computed: {
@@ -43,6 +45,7 @@ export default {
     // }
   },
   components: {
+    UserDashboard,
     Logout
   }
 }

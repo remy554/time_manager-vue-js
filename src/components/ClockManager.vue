@@ -2,7 +2,7 @@
   <div>
     <label>Report your arrival/departure time</label>
       <div class="form-group">
-        <button v-on:click="clock" :disabled="loading">
+        <button v-on:click="clock">
           <span v-show="loading"></span>
           <span>Clock In</span>
         </button>

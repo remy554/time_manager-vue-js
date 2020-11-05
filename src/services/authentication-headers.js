@@ -7,8 +7,10 @@ export default function authHeader () {
   console.log('authHeader jwt : ' + jwt)
 
   if (jwt) {
-    return { Authorization: jwt }
+    console.log('jwt not null')
+    return { Authorization: 'Bearer ' + jwt }
   } else {
+    console.log('jwt null')
     return {}
   }
 }

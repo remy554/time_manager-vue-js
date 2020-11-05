@@ -4,14 +4,12 @@
     <header class="jumbotron">
       <h3>{{content}}</h3>
       <!-- <h3> {{ userid }} </h3> -->
-       <ClockManager/>
     </header>
   </div>
 </template>
 
 <script>
 // import UserService from '../services/user-service'
-import ClockManager from '../components/ClockManager.vue'
 
 export default {
   name: 'Home',
@@ -34,9 +32,6 @@ export default {
     //       error.toString()
     //   }
     // )
-  },
-  components: {
-    ClockManager
   }
 }
 </script>
