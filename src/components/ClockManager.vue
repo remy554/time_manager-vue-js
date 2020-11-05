@@ -18,7 +18,9 @@ export default {
   data () {
     return {
       loading: false,
-      message: ''
+      message: '',
+      startDateTime: null,
+      clockIn: false
     }
   },
   computed: {

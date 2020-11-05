@@ -28,12 +28,12 @@ class AuthenticationService {
 
   signout () {
     return axios
-      .post(API_URL + 'sign_out', {})
+      .post(API_URL + 'sign_out', { headers: authHeader() })
       .then(response => {
         localStorage.removeItem('user')
         localStorage.removeItem('jwt')
-        return response.data
-      }, { headers: authHeader() })
+        return response
+      })
   }
 
   signup (user) {
