@@ -6,11 +6,11 @@
       <ValidationObserver v-slot="{ handleSubmit }">
       <form @submit.prevent="handleSubmit(login)">
         <div class="form-group">
-          <label for="username">Username</label>
+          <label for="email">Email</label>
 
-        <ValidationProvider name="username" rules="required" v-slot="{ errors }">
+        <ValidationProvider name="email" rules="required" v-slot="{ errors }">
           <input
-            v-model="user.username"
+            v-model="user.email"
             type="text"
             class="form-control"
           />
@@ -18,10 +18,10 @@
         </ValidationProvider>
 
          <!-- <div
-            v-if="errors.has('username')"
+            v-if="errors.has('email')"
             class="alert alert-danger"
             role="alert"
-          >Username is missing
+          >Email is missing
         </div> -->
 
         </div>
@@ -95,7 +95,7 @@ export default {
       //   this.loading = false
       //   return
       // }
-      if (this.user.username && this.user.password) {
+      if (this.user.email && this.user.password) {
         // this.user.password = bcrypt.hashSync(this.user.password, saltRounds)
         this.$store.dispatch('signin', this.user).then(
           data => {

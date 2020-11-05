@@ -9,7 +9,7 @@ class AuthenticationService {
   signin (user) {
     const jsonBody = {
       user: {
-        username: user.username,
+        email: user.email,
         password: user.password
       }
     }
