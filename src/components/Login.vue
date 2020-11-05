@@ -88,10 +88,6 @@ export default {
   },
   methods: {
     login () {
-      this.user.id = 1
-      console.log(this.user.id)
-      // this.loading = true
-      debugger
       // if (!isValid) {
       //   this.loading = false
       //   return
