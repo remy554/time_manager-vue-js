@@ -1,10 +1,10 @@
 <template>
   <div>
-    <label>Report your arrival/departure time</label>
+    <label>Report your {{ textLabelClock }} time</label>
       <div class="form-group">
         <button v-on:click="clock">
           <span v-show="loading"></span>
-          <span>Clock In</span>
+          <span>{{ buttonClock }}</span>
         </button>
       </div>
   </div>
@@ -20,7 +20,9 @@ export default {
       loading: false,
       message: '',
       startDateTime: null,
-      clockIn: false
+      clockIn: false,
+      buttonClock: 'Clock In',
+      textLabelClock: 'arrival'
     }
   },
   computed: {
@@ -34,6 +36,24 @@ export default {
         data => {
           this.message = data.message
           this.successful = true
+
+          if (data.clock) {
+            this.clockIn = true
+            this.buttonClock = 'Clock Out'
+            this.startDateTime = data.clock.time
+            console.log('startDateTime: ' + this.startDateTime)
+            this.textLabelClock = 'departure'
+          } else {
+            if (data.workingtime) {
+              console.log('working time returned after clock out')
+              this.clockIn = false
+              this.startDateTime = null
+              this.buttonClock = 'Clock In'
+              this.textLabelClock = 'arrival'
+            } else {
+              // case where the working time is not returned because the clock out can't be validated by the API
+            }
+          }
         },
         error => {
           this.message =
