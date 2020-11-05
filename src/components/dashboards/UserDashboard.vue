@@ -1,13 +1,15 @@
 <template>
   <div class="container">
     <header class="jumbotron">
-      <h3>{{content}}</h3>
+      <!-- <h3>{{content}}</h3> -->
     </header>
+    <ClockManager/>
   </div>
 </template>
 
 <script>
 import UserService from '../../services/user-service'
+import ClockManager from '../ClockManager.vue'
 
 export default {
   name: 'User',
@@ -28,6 +30,9 @@ export default {
           error.toString()
       }
     )
+  },
+  components: {
+    ClockManager
   }
 }
 </script>

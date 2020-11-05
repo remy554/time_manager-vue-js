@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <header class="jumbotron">
+      <h2> Your Profile </h2>
       <h3>
         <strong>{{currentUser.username}}</strong> Profile
       </h3>
@@ -21,10 +22,12 @@
     <ul>
       <li v-for="(role,index) in currentUser.roles" :key="index">{{role}}</li>
     </ul>
+
   </div>
 </template>
 
 <script>
+
 export default {
   name: 'Profile',
   computed: {

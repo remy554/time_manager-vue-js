@@ -83,7 +83,7 @@ export default {
   },
   created () {
     if (this.loggedIn) {
-      this.$router.push('/profile') // go to the Profile page using the vue router
+      this.$router.push({ name: 'profile' }) // go to the Profile page using the vue router
     }
   },
   methods: {

@@ -48,7 +48,8 @@
 </template>
 
 <script>
-import VueMorris from '../src/components/VueMorris'
+import VueMorris from './components/VueMorris'
+
 export default {
   name: 'App',
   components: {

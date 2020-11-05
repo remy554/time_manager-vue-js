@@ -121,7 +121,7 @@ export default {
   },
   mounted () {
     if (this.loggedIn) {
-      this.$router.push('/profile') // use the router vue to go the the profile page
+      this.$router.push({ name: 'profile' }) // use the router vue to go the the profile page
     }
   },
   methods: {
@@ -143,6 +143,7 @@ export default {
           console.log('cookie jwt :' + this.$cookies.get('jwt'))
           this.message = data.message
           this.successful = true
+          this.$router.push({ name: 'profile' })
         },
         error => {
           console.log('then dispatch register error')
