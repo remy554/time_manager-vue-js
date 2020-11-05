@@ -9,7 +9,7 @@
           <h3>{{user.name}}</h3> <!-- Shows the user name selected -->
 
           <!-- Used to delete a user -->
-          <small class="text-danger delete" @click="deleteUser(user.id)">&#10005;</small>
+          <small class="text-danger delete" @click="deleteUserFromList(user.id)">&#10005;</small>
         </div>
         <p>{{user.email}}</p>
 
@@ -27,7 +27,7 @@ import {
 export default {
   name: 'UserList',
   methods: {
-    ...mapActions(['getUsers', 'deleteUser'])
+    ...mapActions(['getUsers', 'deleteUserFromList'])
   },
   computed: mapGetters(['usersList']),
   created () {

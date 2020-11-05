@@ -10,7 +10,7 @@
     </div>
     <router-view/>
 
-    <VueMorris/>
+    <!-- <VueMorris/> -->
 
     <nav class="navbar navbar-expand navbar-dark bg-dark">
       <!-- <a href class="navbar-brand" @click.prevent>TimeManager</a> -->
@@ -39,21 +39,16 @@
         </li>
       </div> -->
     </nav>
-
-    <!-- <div class="container">
-      <router-view />
-    </div> -->
-
   </div>
 </template>
 
 <script>
-import VueMorris from './components/VueMorris'
+// import VueMorris from './components/VueMorris'
 
 export default {
   name: 'App',
   components: {
-    VueMorris
+    // VueMorris
   },
   computed: {
     currentUser () {
@@ -72,12 +67,6 @@ export default {
       }
 
       return false
-    }
-  },
-  methods: {
-    logOut () {
-      this.$store.dispatch('auth/logout')
-      this.$router.push('/login')
     }
   }
 }

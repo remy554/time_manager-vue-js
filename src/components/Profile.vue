@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <header class="jumbotron">
-      <h2> Your Profile 2 </h2>
+      <h2> Your Profile </h2>
       <!-- <h3>
         <strong>{{currentUser.username}}</strong> Profile
       </h3> -->
@@ -24,12 +24,14 @@
     </ul> -->
     <UserDashboard/>
     <Logout/>
+    <DeleteAccount/>
 
   </div>
 </template>
 
 <script>
 import Logout from './Logout.vue'
+import DeleteAccount from './DeleteAccount.vue'
 import UserDashboard from './dashboards/UserDashboard.vue'
 
 export default {
@@ -46,7 +48,8 @@ export default {
   },
   components: {
     UserDashboard,
-    Logout
+    Logout,
+    DeleteAccount
   }
 }
 </script>
