@@ -91,6 +91,7 @@ export default {
       this.user.id = 1
       console.log(this.user.id)
       // this.loading = true
+      debugger
       // if (!isValid) {
       //   this.loading = false
       //   return
@@ -99,10 +100,8 @@ export default {
         // this.user.password = bcrypt.hashSync(this.user.password, saltRounds)
         this.$store.dispatch('signin', this.user).then(
           data => {
-            this.$cookie.set('jwt', data.jwt, 30)
-          },
-          () => {
-            this.$router.push('/profile')
+            this.$cookies.set('jwt', data.jwt, 30)
+            this.$router.push({ name: 'profile' })
           },
           error => {
             this.loading = false
