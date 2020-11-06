@@ -17,9 +17,9 @@
 </template>
 
 <script>
-import {
-  mapActions
-} from 'vuex'
+// import {
+//   mapActions
+// } from 'vuex'
 export default {
 
   name: 'DeleteAccount',
@@ -31,7 +31,21 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['deleteUser'])
+    // ...mapActions(['deleteUser'])
+    deleteUser () {
+      this.$store.dispatch('deleteUser').then(
+        data => {
+          this.$router.push({ name: 'login' })
+        },
+        error => {
+          this.message =
+                (error.response && error.response.data && error.response.data.message) ||
+                error.message ||
+                error.toString()
+          this.successful = false
+        }
+      )
+    }
   }
 }
 </script>
