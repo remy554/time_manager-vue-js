@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <label>Account deletion</label>
+  <div class="buttonTitle">
+    <h2>Account deletion</h2>
       <div class="form-group">
-        <button href @click.prevent="deleteUser" :disabled="loading">
+        <button class="myButton" href @click.prevent="deleteUser" :disabled="loading">
           <span v-show="loading"></span>
           <span>Delete my account</span>
         </button>

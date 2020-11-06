@@ -93,4 +93,39 @@ export default {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+.myButton {
+    box-shadow: 0px 10px 14px -7px #276873;
+    background-color:#0593ff;
+    border-radius:8px;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:20px;
+    font-weight:bold;
+    padding:13px 32px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #3d768a;
+    margin:1em;
+}
+.myButton:hover {
+    background-color:#408c99;
+}
+.myButton:active {
+    position:relative;
+    top:1px;
+}
+
+.form-group{
+  margin: 0em 0em 2em 0em;
+}
+
+.buttonTitle{
+  background:gray;
+  padding:1em;
+  color:white;
+  margin:2em;
+}
+
 </style>

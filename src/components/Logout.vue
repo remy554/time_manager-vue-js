@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <label>Disconnect from your account</label>
+  <div class="buttonTitle">
+    <h2 >Disconnect from your account</h2>
       <div class="form-group">
-        <button href @click.prevent="logOut" :disabled="loading">
+        <button class="myButton" href @click.prevent="logOut" :disabled="loading">
           <span v-show="loading"></span>
           <span>Logout</span>
         </button>

@@ -68,7 +68,7 @@
             >{{errors.first('password')}}</div> -->
           </div>
           <div class="form-group">
-            <button class="btn btn-primary btn-block">Sign Up</button>
+            <button class="myButton">Sign Up</button>
           </div>
         </div>
       </form>

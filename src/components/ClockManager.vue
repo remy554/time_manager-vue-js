@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <label>Report your {{ textLabelClock }} time</label>
+  <div class="buttonTitle">
+    <h2>Report your {{ textLabelClock }} time</h2>
       <div class="form-group">
-        <button v-on:click="clock">
+        <button class="myButton" v-on:click="clock">
           <span v-show="loading"></span>
           <span>{{ buttonClock }}</span>
         </button>
