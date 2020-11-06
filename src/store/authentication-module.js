@@ -43,6 +43,7 @@ export const auth = {
     signinSuccess (state, user) {
       state.status.signedIn = true
       state.user = user
+      console.log('signinSucess mutation user value : ' + state.user)
     },
     signinFailure (state) {
       state.status.signedIn = false
@@ -52,8 +53,10 @@ export const auth = {
       state.status.signedIn = false
       state.user = null
     },
-    signupSuccess (state) {
+    signupSuccess (state, user) {
       state.status.signedIn = false
+      state.user = user
+      console.log('signupSuccess mutation user value : ' + state.user)
     },
     signupFailure (state) {
       state.status.signedIn = false
