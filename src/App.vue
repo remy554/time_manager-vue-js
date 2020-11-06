@@ -4,13 +4,13 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
-      <router-link to="/register">Sign Up</router-link> |
+      <router-link v-if="currentUser" to="/register">Sign Up</router-link> |
       <router-link to="/login">Login</router-link>
 
     </div>
     <router-view/>
 
-    <!-- <VueMorris/> -->
+    <!-- <ChartManager/> -->
 
     <nav class="navbar navbar-expand navbar-dark bg-dark">
       <!-- <a href class="navbar-brand" @click.prevent>TimeManager</a> -->
@@ -43,12 +43,12 @@
 </template>
 
 <script>
-// import VueMorris from './components/VueMorris'
+// import ChartManager from './components/VueMorris'
 
 export default {
   name: 'App',
   components: {
-    // VueMorris
+    // ChartManager
   },
   computed: {
     currentUser () {
@@ -122,10 +122,11 @@ export default {
 }
 
 .buttonTitle{
-  background:gray;
+  /* background:gray; */
   padding:1em;
-  color:white;
+  color:black;
   margin:2em;
+  display: inline-block
 }
 
 </style>

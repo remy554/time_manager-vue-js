@@ -1,12 +1,13 @@
 <template>
   <div id="chart">
+    <h2> Your dashboard </h2>
     <donut-chart
       id="donut"
       :data="donutData"
       colors='[ "#FF6384", "#36A2EB", "#FFCE56" ]'
       resize="true">
     </donut-chart>
-    <bar-chart
+    <!-- <bar-chart
       id="bar"
       :data="barData"
       bar-colors='[ "#FF6384" ]'
@@ -14,17 +15,17 @@
       ykeys="hours"
       grid="true"
       resize="true">
-    </bar-chart>
+    </bar-chart> -->
   </div>
 </template>
 <script>
-import { DonutChart, BarChart } from 'vue-morris'
+import { DonutChart } from 'vue-morris'
 // import { BarChart } from 'vue-morris'
 import Raphael from 'raphael/raphael'
 global.Raphael = Raphael
 
 export default {
-  name: 'VueMorris',
+  name: 'ChartManager',
   data: function () {
     return {
       donutData: [
@@ -40,7 +41,7 @@ export default {
     }
   },
   components: {
-    DonutChart, BarChart
+    DonutChart
   }
 }
 </script>
