@@ -30,7 +30,7 @@ export const auth = {
       return AuthenticationService.signup(user).then(
         response => {
           commit('signupSuccess')
-          return Promise.resolve(response.data)
+          return Promise.resolve(user)
         },
         error => {
           commit('signupFailure')
